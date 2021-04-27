@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CestaModels", "CestaModels\CestaModels.csproj", "{8F48AAE4-1214-43C0-A4FB-7C2944B72FF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cesta-Api", "Cesta-Api\Cesta-Api.csproj", "{587F1B4B-62B7-4104-8CE1-CDABA3DA9B5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cesta-Api-Consulta", "Cesta-Api-Consulta\Cesta-Api-Consulta.csproj", "{587F1B4B-62B7-4104-8CE1-CDABA3DA9B5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cesta-Core", "Cesta-Core\Cesta-Core.csproj", "{C7A26338-204F-47D5-879B-F531A503F5D6}"
 EndProject

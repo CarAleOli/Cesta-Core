@@ -5,4 +5,12 @@
         <RootNamespace>Cesta_Core</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Geolocation" Version="1.2.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="DistanceCalculator.cs" />
+    </ItemGroup>
+
 </Project>

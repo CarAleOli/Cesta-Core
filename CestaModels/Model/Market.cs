@@ -1,4 +1,6 @@
-﻿namespace Cesta_Api_Core.Model
+﻿using System;
+
+namespace CestaModels
 {
     public class Market
     {
@@ -6,11 +8,15 @@
 
         public string name { get; set; }
         
-        public string latitude { get; set; }
+        public double latitude { get; set; }
 
-        public string longitude { get; set; }
+        public double longitude { get; set; }
+
+        public DateTime openingHour { get; set; }
         
-        #warning  eu nao sei se precisamos disso, preciso fazer um review pra ter ctz
-        public string cnpj { get; set; }
+        public DateTime closingHour { get; set; }
+        
+        public string description { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Cesta_Api_Core.Model
+﻿namespace CestaModels.Model
 {
     public class Product
     {

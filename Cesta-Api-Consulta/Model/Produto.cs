@@ -1,9 +1,7 @@
-﻿namespace Cesta_Api.Model
+﻿namespace Cesta_Api_Consulta.Model
 {
     public class Produto
     {
-        public int id_produto { get; set; }
-
         public string nome { get; set; }
 
         public string valor { get; set; }
