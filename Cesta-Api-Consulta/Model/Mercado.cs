@@ -11,7 +11,7 @@ namespace Cesta_Api_Consulta.Model
         public double longitudeMercado { get; set; }
         
         public DateTime horaAbertura { get; set; }
-        
+
         public DateTime horaFechamento { get; set; }
         
         public string descricao { get; set; }

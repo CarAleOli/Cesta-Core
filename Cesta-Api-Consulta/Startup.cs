@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cesta_Api_Consulta.Controllers;
 using Cesta_Api_Consulta.Model;
+using Cesta_Api_Consulta.Service;
 using CestaModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +38,9 @@ namespace Cesta_Api_Core
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Cesta_Api_Core", Version = "v1"});
             });
+            
+            services.AddScoped<MercadoService>();
+            services.AddScoped<ProdutoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -17,16 +17,21 @@ namespace Cesta_Api_Consulta.Controllers
         }
         
         [HttpGet,Route("Listar")]
-        public IEnumerable<Mercado> ListarMercadosProximos(Localizacao loc,int distancia)
+        public IEnumerable<Mercado> ListarMercadosProximos(float latitude,float longitude)
         {
-            return service.ListarMercadosProximos(loc, distancia);
+            return service.ListarMercadosProximos(new Localizacao{latitude = latitude,longitude = longitude}, 10);
         }
 
-        /*[HttpPost]
-        public Mercado CreateMercado(Mercado m)
+        [HttpGet]
+        public Mercado GetMercado(int id)
         {
-            return service.CreateMercado(m);
-        }*/
-
+            return service.GetMercado(id);
+        }
+        [HttpPost]
+        public void CreateMercado(Mercado m)
+        {
+            service.CreateMercado(m);
+        }
+        
     }
 }
