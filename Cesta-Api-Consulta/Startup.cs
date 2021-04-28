@@ -61,6 +61,7 @@ namespace Cesta_Api_Core
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
+            banco.Database.Migrate();
         }
     }
 }

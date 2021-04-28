@@ -18,34 +18,37 @@ namespace Cesta_Api_Consulta.Service
             Database = database;
             mercadoService = ms;
         }
-        
 
         public  IEnumerable<Produto> ProcurarProdutoPorPreco(Localizacao loc)
         {
-            return Database.Produto.ToArray().Where(product =>
-                product.market!=null && 
-                GeoCalculator.GetDistance(
-        new Coordinate(loc.latitude, loc.longitude),
-        new Coordinate(product.market.latitude, product.market.longitude),
-                1, DistanceUnit.Kilometers) <= 10).Select(product => new Produto
-                            {
-                                nome = product.name,
-                                descricao = product.description,
-                                mercado_associado = new Mercado
-                                {
-                                    nome = product.market.name,
-                                    descricao = product.market.description,
-                                    horaAbertura = product.market.openingHour,
-                                    horaFechamento = product.market.closingHour
-                                },
-                                valor = product.price
-
-                            }).OrderBy(produto =>produto.valor);
+            return Database.Produto
+                .Include(p => p.market)
+                .ToArray()
+                .Where(product =>
+                    GeoCalculator.GetDistance(
+                        new Coordinate(loc.latitude, loc.longitude), 
+                        new Coordinate(product.market.latitude, product.market.longitude),
+                        1, 
+                        DistanceUnit.Kilometers) <= 10)
+                .Select(product => new Produto
+                {
+                    nome = product.name,
+                    descricao = product.description,
+                    mercado_associado = new Mercado
+                    {
+                        nome = product.market.name,
+                        descricao = product.market.description,
+                        horaAbertura = product.market.openingHour,
+                        horaFechamento = product.market.closingHour
+                    },
+                    valor = product.price
+                })
+                .OrderBy(produto =>produto.valor);
     }
 
         public IEnumerable<Produto> ProcurarProdutoPorDistancia(Localizacao loc, int distancia)
         {
-            return Database.Produto.ToArray().Select(product => new Produto
+            return Database.Produto.Include(p => p.market).ToArray().Select(product => new Produto
             {
                 nome = product.name,
                 descricao = product.description,
@@ -62,7 +65,7 @@ namespace Cesta_Api_Consulta.Service
 
         public Produto GetProduto(int id)
         {
-            var product = Database.Produto.FirstOrDefault(product => product.id == id);
+            var product = Database.Produto.Include(p => p.market).FirstOrDefault(product => product.id == id);
             return new Produto
             {
                 descricao = product.description,
@@ -76,12 +79,10 @@ namespace Cesta_Api_Consulta.Service
                 },
                 valor = product.price
             };
-
         }
         
-        public Product createProduto(Produto p)
+        public void createProduto(Produto p)
         {
-            var market = 
             Database.Produto.Add(new Product
             {
                 description = p.descricao,
@@ -99,7 +100,6 @@ namespace Cesta_Api_Consulta.Service
                 
             });
             Database.SaveChanges();
-            return market;
         }
     }
 }       
